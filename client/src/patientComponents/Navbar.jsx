@@ -1,12 +1,13 @@
 import React from 'react'
-import './nav.css'
+import { Link,useNavigate} from "react-router-dom";
+import '../patientStyles/navbar.css'
 const Navbar = () => {
   return (
     <nav className='nav-all'>
 
       <div className='nav-right'>
         <ul>
-          <li><a href='#'>Features</a></li>
+          <li><Link to=''>Features</Link></li>
           <li><a href='#'>Pricing and Appointment</a></li>
           <li><a href='#'>FAQ</a></li>
           <li><a href='#'>Find Clinic</a></li>
@@ -20,7 +21,7 @@ const Navbar = () => {
         <ul>
           <li><a href='#'>Profile</a></li>
         </ul>
-        <button>Logout</button>
+        <button><Link>Login</Link></button>
       </div>
     </nav>
   )
