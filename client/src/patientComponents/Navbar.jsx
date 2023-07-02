@@ -2,6 +2,12 @@ import React from 'react'
 import { Link,useNavigate} from "react-router-dom";
 import '../patientStyles/navbar.css'
 const Navbar = () => {
+  const navigate = useNavigate()
+  function handleLogout(){
+    localStorage.removeItem('token')
+    navigate('/')
+    // window.location.href = '/';
+  }
   return (
     <nav className='nav-all'>
 
@@ -21,7 +27,7 @@ const Navbar = () => {
         <ul>
           <li><a href='#'>Profile</a></li>
         </ul>
-        <button><Link>Login</Link></button>
+        <button onClick={handleLogout}>LogOut</button>
       </div>
     </nav>
   )

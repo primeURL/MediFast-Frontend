@@ -57,7 +57,7 @@ const navigate = useNavigate()
           title: 'Login Successfull',
           footer: 'You will be Redirecting to Home Page.'
         }).then(()=>{
-          // navigate('/home')
+          navigate('/patientNavbar')
         })
         setLoading(false)
     } catch (error) {
@@ -124,7 +124,7 @@ const navigate = useNavigate()
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+             Sign In
             </Button>
             <Grid container>
               <Grid item xs>
