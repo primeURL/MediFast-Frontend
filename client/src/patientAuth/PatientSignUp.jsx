@@ -36,7 +36,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function PatientSignUp() {
   const [loading,setLoading] = useState(false)
   const navigate = useNavigate()
   const handleSubmit = async (event) => {
@@ -177,7 +177,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="login" variant="body2">
+                <Link href="/patientHome/patientLogin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

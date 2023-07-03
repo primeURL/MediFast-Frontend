@@ -33,7 +33,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function Login() {
+export default function PatientLogin() {
 const [loading,setLoading] = useState(false)
 const navigate = useNavigate()
 
@@ -48,16 +48,16 @@ const navigate = useNavigate()
         setLoading(true)
         const url = env.backend_url_patient + '/login'
         const response = await axios.post(url,body)
-        console.log('resp:',response);
+        // console.log('resp:',response);
         localStorage.setItem('token',response.data.data)
         localStorage.setItem('userId',response.data.userId)
         localStorage.setItem('userName',response.data.userName)
         Swal.fire({
           icon: 'success',
           title: 'Login Successfull',
-          footer: 'You will be Redirecting to Home Page.'
+          footer: 'You will be Redirecting to Patient Features Page.'
         }).then(()=>{
-          navigate('/patientNavbar')
+          navigate('/patientHome')
         })
         setLoading(false)
     } catch (error) {
@@ -133,8 +133,8 @@ const navigate = useNavigate()
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/patientHome/patientSignup" variant="body2">
+                  "Don't have an account? Sign Up"
                 </Link>
               </Grid>
             </Grid>

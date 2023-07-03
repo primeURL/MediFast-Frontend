@@ -7,9 +7,8 @@ const Dashboard = () => {
     <div className='common-main'>
         <img src={dashboard} className='background-image'></img>
         <div className="common-overlay-button">
-            <button><Link to='/patientLogin'>Patient Login</Link></button>
-            <button><Link to='/doctorLogin'>Doctor Login</Link></button>
-
+            <button><Link to='/patientHome'>Are You Patient? Click Here</Link></button>
+            <button><Link to='/doctorHome'>Are You Doctor? Click Here</Link></button>
         </div>
     </div>
   )
