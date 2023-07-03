@@ -1,7 +1,7 @@
 import PatientLogin from "./patientAuth/PatientLogin"
 import PatientSignUp from "./patientAuth/PatientSignUp"
 import Dashboard from './commonComponents/Dashboard';
-import Home from "./patientScreen/Home";
+import PatientHome from "./patientScreen/PatientHome";
 import PatientFeatures from "./patientScreen/PatientFeatures";
 import PatientPricingAppointment from "./patientScreen/PatientPricingAppointment";
 import PatientFaq from "./patientScreen/PatientFaq";
@@ -17,7 +17,7 @@ function App() {
       {/* <Dashboard /> */}
       <Routes>
         <Route path="/" element={<Dashboard/>}></Route>
-        <Route path="/patientHome" element={<Home/>}>
+        <Route path="/patientHome" element={<PatientHome/>}>
             <Route path="" element={<PatientFeatures/>}></Route>
             <Route path="patientLogin" element={<PatientLogin/>}></Route>
             <Route path="patientSignup" element={<PatientSignUp/>}></Route>

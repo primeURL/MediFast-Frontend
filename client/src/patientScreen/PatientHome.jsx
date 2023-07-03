@@ -1,14 +1,14 @@
 import React from 'react'
 import PatientNavbar from '../patientComponents/PatientNavbar';
 import { Outlet } from 'react-router-dom';
-const Home = () => {
+const PatientHome = () => {
   return (
     <>
-        <div><PatientNavbar/></div>
-        <Outlet/>
+      <div><PatientNavbar/></div>
+      <Outlet/>
     </>
     
   )
 }
 
-export default Home
+export default PatientHome
