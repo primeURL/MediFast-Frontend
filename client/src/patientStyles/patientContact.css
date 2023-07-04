@@ -1,0 +1,72 @@
+.section{
+    width: 100%;
+    height: 100vh;
+    background: #1f1f38;
+    background-image: url(../patientComponentsAssets/bg-texture.png);
+}
+.container.contact__container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 30% 58%;
+    gap: 12%;
+    
+    
+}
+
+.contact__options{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.contact__option{
+    background:  white;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    text-align: center;
+    border: 1px solid transparent;
+    transition:  all 400ms ease;
+}
+
+.contact__option:hover{
+    background: #4db5ff;
+    border-color: #ff5500;
+    transition: all 400ms ease;
+}
+
+.contact__option-icon{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact__option a{
+    margin-top: 0.7rem;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.section>h2, .section>h5{
+    font-weight: 500;
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    padding: 5px;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+input, textarea{
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    border: 2px solid rgba(77, 181,255,0.4);
+    resize: none;
+    color: #fff;
+
+}
