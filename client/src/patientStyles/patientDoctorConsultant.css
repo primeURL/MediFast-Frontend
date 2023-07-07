@@ -1,9 +1,15 @@
 .doctors-page {
-    max-width: 600px;
+    max-width: 100%;
+    height: 100vh;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 4px;
+  }
+
+  .all__doctors__cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   
   .doctors-title {
@@ -13,16 +19,23 @@
   }
   
   .doctor-card {
+    background-color: rgba(0, 255, 195, 0.153);
     padding: 20px;
-    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin: 20px;
+    cursor: pointer;
+  }
+
+  .doctor-card:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
   
   .doctor-name {
     font-size: 20px;
     margin-bottom: 10px;
+    text-align: center;
+    color: rgb(0, 21, 255);
   }
   
   .doctor-info {
@@ -36,3 +49,35 @@
     margin-bottom: 20px;
   }
   
+
+  
+  /* CSS */
+  .button-62 {
+    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+  }
+  
+  .button-62:not([disabled]):focus {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+  }
+  
+  .button-62:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+  }
