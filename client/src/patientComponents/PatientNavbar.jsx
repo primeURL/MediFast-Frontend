@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate} from "react-router-dom";
-import '../patientStyles/navbar.css'
+import '../patientStyles/patientNavbar.css'
 const PatientNavbar = () => {
   const navigate = useNavigate()
   const [logoutBtn,setLogutBtn] = useState(false)
