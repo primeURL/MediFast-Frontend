@@ -2,12 +2,13 @@ import React,{useState,useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../patientStyles/patientPricingAppointment.css'
+import {BsCheck} from 'react-icons/bs'
 const PatientPricingAppointment = () => {
   return (
     <>
     <div>
       <Pricing/>
-      <Appointment/>
+      
     </div>
     </>
   )
@@ -20,17 +21,17 @@ export default PatientPricingAppointment
 export function Pricing(){
   const pricingData = [
     {
-      title: 'Basic Package',
+      title: 'Basic',
       price: '$19.99',
       features: ['Feature 1', 'Feature 2', 'Feature 3'],
     },
     {
-      title: 'Standard Package',
+      title: 'Standard',
       price: '$29.99',
       features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
     },
     {
-      title: 'Premium Package',
+      title: 'Premium',
       price: '$49.99',
       features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5'],
     },
@@ -42,13 +43,18 @@ export function Pricing(){
       <div className="pricing-cards">
         {pricingData.map((pricing, index) => (
           <div key={index} className="pricing-card">
-            <h3 className="package-title">{pricing.title}</h3>
-            <p className="package-price">{pricing.price}</p>
-            <ul className="package-features">
-              {pricing.features.map((feature, index) => (
-                <li key={index} className="feature-item">{feature}</li>
-              ))}
-            </ul>
+            <div className="card_contents">
+              <h3 className="package-title">{pricing.title}</h3>
+              <p className="package-price">{pricing.price}</p>
+              <ul className="package-features">
+                {pricing.features.map((feature, index) => (
+                  <li key={index} className="feature-item"><BsCheck/>{feature}</li>
+                  
+                ))}
+              </ul>
+              
+              <Appointment/>
+            </div>
           </div>
         ))}
       </div>
@@ -94,9 +100,8 @@ export function Appointment(){
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Book Appointment
-      </Button>
+      
+      <button class="button-32" role="button" onClick={handleShow}>Book Now</button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
