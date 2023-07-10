@@ -1,11 +1,24 @@
 import React, {useState} from 'react'
 import '../AdminComponentsStyles/addDoctor.css'
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated';
 const AddDoctors = () => {
+    const animatedComponents = makeAnimated();
+    const [selectedOption, setSelectedOption] = useState(null);
+    const options = [
+        { value: 'Monday',label: 'Monday'},
+        { value: 'Tuesday',label: 'Tuesday'},
+        { value: 'Wednesday',label: 'Wednesday'},
+        { value: 'Thursday',label: 'Thursday'},
+        { value: 'Friday',label: 'Friday'},
+        { value: 'Saturday',label: 'Saturday'},
+        { value: 'Sunday', label: 'Sunday'},
+      ]
     const [formData, setFormDate] = useState({
         name:'',
         speciality:'',
         qualifications:'',
-        experience:'',
+        experience:'',  
         availability:'',
         consultation_fee:''
     })
@@ -15,6 +28,7 @@ const AddDoctors = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
+        formData.availability = selectedOption
         console.log(formData)
 
     }
@@ -39,7 +53,14 @@ const AddDoctors = () => {
             </label>
             <label className='form__label'>
                 Availability: 
-                <input className='form__input' type='text' onChange={handleChange} name='availability' value={formData.availability}/>
+                <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            onChange={setSelectedOption}
+            defaultValue={selectedOption}
+            isMulti
+             options={options}
+          />
             </label>
             <label className='form__label'>
                 Consultation Fee: 
@@ -47,8 +68,13 @@ const AddDoctors = () => {
             </label>
             <button className="form__submit" type="submit">Submit</button>
         </form>
+    
     </div>
   )
 }
 
 export default AddDoctors
+
+
+
+
