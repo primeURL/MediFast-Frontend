@@ -9,7 +9,23 @@
     height: 100vh;
     
   }
+
+  .adminBtn{
+    position: absolute;
+    top: 2%;
+    left: 92%;
+    
+  }
+
+  .adminBtn button{
+    border-radius: 30px;
+    background: #ffbe00;
+    border: 0px;
+  }
   
+  .adminBtn button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
   .common-overlay-button {
     position: absolute;
     top: 50%;

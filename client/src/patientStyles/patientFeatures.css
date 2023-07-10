@@ -33,8 +33,8 @@
 }
 
 .features_cards .all_cards .card:hover{
-    width: 360px;
-    height: 410px;
+    width: 355px;
+    height: 405px;
     box-shadow: 2px 4px 6px rgb(63, 56, 56);
 }
 

@@ -11,6 +11,8 @@ import PatientDoctorConsultant from './patientScreen/PatientDoctorConsultant';
 import PatientAboutUs from "./patientScreen/PatientAboutUs";
 import PatientProfile from "./patientScreen/PatientProfile";
 import { Routes, Route } from "react-router-dom";
+import AdminNavbar from "./AdminComponents/AdminNavbar";
+import AddDoctors from "./AdminComponents/AddDoctors";
 function App() {
   return (
     <>
@@ -29,6 +31,10 @@ function App() {
             <Route path="doctor-consultant" element={<PatientDoctorConsultant/>}></Route>
             <Route path="about" element={<PatientAboutUs/>}></Route>
             <Route path="profile" element={<PatientProfile/>}></Route>
+          
+        </Route>
+        <Route path="/adminHome" element={<AdminNavbar/>}>
+            <Route path="add-new-doctor" element={<AddDoctors/>}></Route>
         </Route>
         
       </Routes>

@@ -1,0 +1,33 @@
+.navbar {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    /* width: 100%;
+    height: 100vh; */
+    background: url(../AdminComponents/adminHomeBg.jpg);
+  }
+  
+  .navbar .navbar__menu {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    width: 60%;
+    
+  }
+  .logoutBtn{
+    list-style: none;
+  }
+  .navbar__item {
+    margin: 0 2rem;
+    color: #333333;
+    cursor: pointer;
+  }
+  
+  .navbar__logout {
+    color: #ff0000; 
+  }
+  
+  .navbar__item:hover {
+    color: #4287f5;
+  }
+  
