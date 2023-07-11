@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../patientStyles/patientDoctorConsultant.css'
+import axios from 'axios';
+import env from '../env.json'
 const PatientDoctorConsultant = () => {
   const doctors = [
     {
@@ -58,7 +60,18 @@ const PatientDoctorConsultant = () => {
     },
     // Add more doctors/consultants as needed
   ];
-
+  useEffect(()=>{
+    console.log('hello')
+    async function fetchDoctors(){
+      try {
+        const {data} = await axios.get(`${env.backend_url_getPatientInfo}/doctorConsultant`)
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchDoctors()
+  },[])
   return (
     <div className="doctors-page">
       <h2 className="doctors-title">Doctors and Consultants</h2>
