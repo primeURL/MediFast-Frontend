@@ -56,10 +56,16 @@ const AddDoctors = () => {
             setLoading(false)
 
         }
+        window.location.reload()
     }
   return (
+<<<<<<< HEAD
     <>
     {loading ? (<Loader/>) : (<div>
+=======
+    <div className='all'>
+        <h2 className='title'>Add new Doctor</h2>
+>>>>>>> 0cf7929507d403b0d9a1a51a08a4898e1eff3bac
         <form className='form' onSubmit={handleSubmit}>
             <label className='form__label'>
                 Doctor's name: 

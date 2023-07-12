@@ -1,20 +1,41 @@
 .form {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 500px;
+    padding: 2rem;
     margin: 0 auto;
+    background-color: transparent;
+    box-shadow: 2px 2px 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
   }
-  
+  .all{
+    width: 100%;
+    height: auto;
+    align-items: center;
+    
+  }
+  .title{
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+  }
   .form__label {
     margin-bottom: 0.5rem;
+    font-weight: 500;
   }
   
-  .form__input,
-  .form__textarea {
+  .form__input{
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color:black;
+    transition: border 0.1s ease;
+  }
+
+  .form__input:focus{
+    border: 2px solid green;
+    outline: none;
   }
   
   .form__submit {
