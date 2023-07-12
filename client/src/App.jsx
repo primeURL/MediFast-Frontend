@@ -13,6 +13,8 @@ import PatientProfile from "./patientScreen/PatientProfile";
 import { Routes, Route } from "react-router-dom";
 import AdminNavbar from "./AdminComponents/AdminNavbar";
 import AddDoctors from "./AdminComponents/AddDoctors";
+import AdminLogin from "./adminAuth/adminLogin";
+import AdminSignUp from "./adminAuth/adminSignUp";
 function App() {
   return (
     <>
@@ -33,6 +35,9 @@ function App() {
             <Route path="profile" element={<PatientProfile/>}></Route>
           
         </Route>
+        <Route path="/adminLogin" element={<AdminLogin/>}></Route>
+        <Route path="/adminSignup" element={<AdminSignUp/>}></Route>
+
         <Route path="/adminHome" element={<AdminNavbar/>}>
             <Route path="add-new-doctor" element={<AddDoctors/>}></Route>
         </Route>

@@ -4,7 +4,10 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import env from '../env.json'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import Loader from '../commonComponents/Loader';
 const AddDoctors = () => {
+    const [loading,setLoading] = useState(false)
     const animatedComponents = makeAnimated();
     const [selectedOption, setSelectedOption] = useState(null);
     const options = [
@@ -34,14 +37,29 @@ const AddDoctors = () => {
         e.preventDefault()
         formData.avaliableDays = selectedOption
         try {
+            setLoading(true)
             const {data} = await axios.post(`${env.backend_url_admin}/addDoctor`,formData)
             console.log(data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Doctor Added Successfull',
+              })
+            setLoading(false)
+
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                icon: 'info',
+                title: 'Login Failed',
+                text: error.response.data.message,
+              })
+            setLoading(false)
+
         }
     }
   return (
-    <div>
+    <>
+    {loading ? (<Loader/>) : (<div>
         <form className='form' onSubmit={handleSubmit}>
             <label className='form__label'>
                 Doctor's name: 
@@ -86,7 +104,9 @@ const AddDoctors = () => {
             <button className="form__submit" type="submit">Submit</button>
         </form>
     
-    </div>
+    </div>)}
+    </>
+    
   )
 }
 

@@ -23,7 +23,7 @@ const Dashboard = () => {
           <button><Link to ='/doctorHome' className='link'>Doctor Login</Link></button>
         </div>
         <div className="admin__section">
-          <button><Link to='/adminHome' className='link'>Admin Login</Link></button>
+          <button><Link to='/adminLogin' className='link'>Admin Login</Link></button>
         </div>
     </div>
   )
