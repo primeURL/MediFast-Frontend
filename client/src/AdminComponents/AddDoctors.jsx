@@ -39,9 +39,11 @@ const AddDoctors = () => {
         } catch (error) {
             console.log(error);
         }
+        window.location.reload()
     }
   return (
-    <div>
+    <div className='all'>
+        <h2 className='title'>Add new Doctor</h2>
         <form className='form' onSubmit={handleSubmit}>
             <label className='form__label'>
                 Doctor's name: 
