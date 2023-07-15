@@ -49,7 +49,9 @@
     margin-bottom: 20px;
   }
   
-
+  .patient__form__input{
+    color: black;
+  }
   
   /* CSS */
   .button-62 {
