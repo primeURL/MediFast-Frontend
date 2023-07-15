@@ -25,6 +25,7 @@ const PatientDoctorConsultant = () => {
   const handleClose = () => setIsOpen(false)
   const [doctors,setDoctors] = useState([])
   const animatedComponents = makeAnimated();
+  const [id, setId] = useState('')
   const [selectedOption, setSelectedOption] = useState(null);
   const options = [
       { value: 'Monday',label: 'Monday'},
@@ -36,7 +37,7 @@ const PatientDoctorConsultant = () => {
       { value: 'Sunday', label: 'Sunday'},
   ]
 
-  const handleSubmit = (id) =>{
+  const handleSubmit = () =>{
     appointment.appointmentDay = selectedOption
     appointment.doctor_id = id
     console.log(appointment);
@@ -44,6 +45,7 @@ const PatientDoctorConsultant = () => {
 
   const idFun = (id) => {
     console.log(id)
+    setId(id)
     setIsOpen(true)
   }
   useEffect(()=>{
@@ -105,7 +107,7 @@ const PatientDoctorConsultant = () => {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={() => handleSubmit(doctor._id)}>
+                <Button variant="primary" onClick={() => handleSubmit()}>
                   Schedule Appointment
                 </Button>
               </Modal.Footer>
