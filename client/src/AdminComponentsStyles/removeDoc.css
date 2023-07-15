@@ -1,0 +1,11 @@
+.data__row{
+    align-items: center;
+}
+
+TableCell{
+    font-weight: bold;
+}
+
+.data__row Button{
+    height: 20px;
+}
