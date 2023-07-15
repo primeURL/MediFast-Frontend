@@ -46,7 +46,7 @@ const navigate = useNavigate()
     };
     try {
         setLoading(true)
-        const url = env.backend_url_patient + '/login'
+        const url = env.backend_url_admin_auth + '/login'
         const response = await axios.post(url,body)
         // console.log('resp:',response);
         localStorage.setItem('token',response.data.data)
@@ -55,7 +55,7 @@ const navigate = useNavigate()
         Swal.fire({
           icon: 'success',
           title: 'Login Successfull',
-          footer: 'You will be Redirecting to Patient Features Page.'
+          footer: 'You will be Redirecting to Admin Home Page.'
         }).then(()=>{
           navigate('/adminHome')
         })

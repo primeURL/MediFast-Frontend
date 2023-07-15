@@ -51,7 +51,7 @@ export default function AdminSignUp() {
       }
     try {
         setLoading(true)
-        const url = env.backend_url_admin + '/signup'
+        const url = env.backend_url_admin_auth + '/signup'
         const {data:res} = await axios.post(url,body)
         Swal.fire({
           icon: 'success',
