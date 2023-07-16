@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
-import { FormControl, InputLabel, FormHelperText, Input, TextField, styled, Button } from '@mui/material';
+import { FormControl, TextField, styled, Button } from '@mui/material';
+import env from '../env.json'
+import axios from 'axios'
 import '../AdminComponentsStyles/addClinic.css'
 
 const Form = styled(FormControl)`
@@ -30,25 +32,29 @@ const AddClinic = () => {
         setClinic({...clinic, [e.target.name]: e.target.value})
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
-        console.log(clinic);
+        const res = await axios.post(`${env.backend_url_admin}/addClinic`,clinic )
+        console.log(res);
     }
   return (
     <div className='clinic-form'>
-        <Form onSubmit={handleSubmit}>
-            <FormField id="outlined-basic" label="Clinic Name" variant="outlined" name="clinicName" value={clinic.clinicName} onChange={handleChange} />
-            <FormField id="outlined-basic" label="Country" variant="outlined" name='country' value={clinic.country} onChange={handleChange} />
-            <FormField id="outlined-textarea"
-                label="Clinic Address"
-                placeholder="Placeholder"
-                multiline 
-                name='clinicLocation' value={clinic.clinicLocation} onChange={handleChange}/>
-            <FormField id="outlined-basic" label="Clinic Phone" variant="outlined" name='clinicPhone' value={clinic.clinicPhone} onChange={handleChange} />
-            <Submit variant="contained" color="primary" type="submit">
-                Add Clinic
-            </Submit>
-        </Form>
+        <form onSubmit={handleSubmit}>
+            <Form>
+                <FormField id="outlined-basic" label="Clinic Name" variant="outlined" name="clinicName" value={clinic.clinicName} onChange={handleChange} />
+                <FormField id="outlined-basic" label="Country" variant="outlined" name='country' value={clinic.country} onChange={handleChange} />
+                <FormField id="outlined-textarea"
+                    label="Clinic Address"
+                    placeholder="Placeholder"
+                    multiline 
+                    name='clinicLocation' value={clinic.clinicLocation} onChange={handleChange}/>
+                <FormField id="outlined-basic" label="Clinic Phone" variant="outlined" name='clinicPhone' value={clinic.clinicPhone} onChange={handleChange} />
+                <Submit variant="contained" color="primary" type="submit">
+                    Add Clinic
+                </Submit>
+            </Form>
+
+        </form>
 
     </div>
   )
