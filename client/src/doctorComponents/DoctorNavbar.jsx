@@ -12,6 +12,7 @@ const DoctorNavbar = () => {
   },[token])
   function handleLogout(){
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
     navigate('/')
     // window.location.href = '/';
   }

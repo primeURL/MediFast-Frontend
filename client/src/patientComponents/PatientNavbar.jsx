@@ -12,6 +12,8 @@ const PatientNavbar = () => {
   },[token])
   function handleLogout(){
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
+    localStorage.removeItem('userId')
     navigate('/')
     // window.location.href = '/';
   }

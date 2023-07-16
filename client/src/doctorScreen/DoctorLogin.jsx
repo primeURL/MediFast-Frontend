@@ -48,9 +48,9 @@ const navigate = useNavigate()
         setLoading(true)
         const url = env.backend_url_doctor_auth + '/login'
         const response = await axios.post(url,body)
-        // console.log('resp:',response);
+        console.log('resp:',response);
         localStorage.setItem('token',response.data.data)
-        localStorage.setItem('userName',response.data.userName)
+        localStorage.setItem('id',response.data.id)
         Swal.fire({
           icon: 'success',
           title: 'Login Successfull',
