@@ -27,7 +27,9 @@ const AddDoctors = () => {
         avaliableDays:'',
         startTime:'',
         endTime:'',
-        consultationFee:''
+        consultationFee:'',
+        email :'',
+        password:''
     })
 
     const handleChange = (e) => {
@@ -101,6 +103,14 @@ const AddDoctors = () => {
             <label className='form__label'>
                 Consultation Fee: 
                 <input className='form__input' type='text' onChange={handleChange} name='consultationFee' value={formData.consultationFee}/>
+            </label>
+            <label className='form__label'>
+                Email: 
+                <input className='form__input' type='text' onChange={handleChange} name='email' value={formData.email}/>
+            </label>
+            <label className='form__label'>
+                Password
+                <input className='form__input' type='text' onChange={handleChange} name='password' value={formData.password}/>
             </label>
             <button className="form__submit" type="submit">Submit</button>
         </form>

@@ -32,8 +32,7 @@ const DoctorNavbar = () => {
           {/* <ul>
             <li><a href='#'>Profile</a></li>
           </ul> */}
-          {logoutBtn && (<button onClick={()=>(navigate('/patientHome/profile'))}>Profile</button>)}
-          {!logoutBtn && (<button onClick={()=>(navigate('/patientHome/patientLogin'))}>Login</button>)}
+          {!logoutBtn && (<button onClick={()=>(navigate('/doctorHome/doctorLogin'))}>Login</button>)}
           {logoutBtn && (<button onClick={handleLogout}>LogOut</button>)}
         </div>
       </nav>

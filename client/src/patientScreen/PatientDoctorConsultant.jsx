@@ -9,17 +9,17 @@ import Select from 'react-select'
 
 const PatientDoctorConsultant = () => {
   const [appointment, setAppointment] = useState({
-    name: '',
-    phone:'',
-    issue:'',
+    patientName: '',
+    patientPhone:'',
+    patientIssue:'',
     appointmentDay:'',
-    time:'',
-    doctor_id:''
+    patientTime:'',
+    doctorId:'',
   })
   const handleChange = (e) => {
     setAppointment({...appointment, [e.target.name]: e.target.value})
   }
-
+  const userId = localStorage.getItem('userId')
   const [isOpen, setIsOpen] = useState(false)
   const handleShow = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
@@ -37,10 +37,17 @@ const PatientDoctorConsultant = () => {
       { value: 'Sunday', label: 'Sunday'},
   ]
 
-  const handleSubmit = () =>{
+  const handleSubmit = async() =>{
     appointment.appointmentDay = selectedOption
-    appointment.doctor_id = id
+    appointment.patientId = userId
+    appointment.doctorId = id
     console.log(appointment);
+    try {
+      const {data} = await axios.post(env.backend_url_bookedDoctor,appointment)
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const idFun = (id) => {
@@ -84,11 +91,11 @@ const PatientDoctorConsultant = () => {
                 <Modal.Body>
                   <div>
                     <label>Name:</label>
-                    <input className='patient__form__input' type='text' name='name' value={appointment.name} onChange={handleChange}/>
+                    <input className='patient__form__input' type='text' name='patientName' value={appointment.patinetName} onChange={handleChange}/>
                     <label>Phone:</label>
-                    <input className='patient__form__input' type='number' name='phone' value={appointment.phone} onChange={handleChange}/>
+                    <input className='patient__form__input' type='number' name='patientPhone' value={appointment.patientPhone} onChange={handleChange}/>
                     <label>Issue:</label>
-                    <input className='patient__form__input' type='text' name='issue' value={appointment.issue} onChange={handleChange}/>
+                    <input className='patient__form__input' type='text' name='patientIssue' value={appointment.patientIssue} onChange={handleChange}/>
                     <label>Appointment Day:</label>
                     <Select
                 
@@ -100,7 +107,7 @@ const PatientDoctorConsultant = () => {
                         options={options}
                       />
                       <label>Appointment Time</label>
-                      <input className='patient__form__input' type='time' name='time' value={appointment.time} onChange={handleChange}/>
+                      <input className='patient__form__input' type='time' name='patientTime' value={appointment.patientTime} onChange={handleChange}/>
                   </div>
                 </Modal.Body>
                 <Modal.Footer>
