@@ -36,6 +36,7 @@ const AddClinic = () => {
         e.preventDefault()
         const res = await axios.post(`${env.backend_url_admin}/addClinic`,clinic )
         console.log(res);
+        window.location.reload()
     }
   return (
     <div className='clinic-form'>
