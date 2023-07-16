@@ -20,6 +20,9 @@ import PatientRecord from "./doctorScreen/PatientRecord";
 import MyAppointment from "./doctorScreen/MyAppointment";
 import Prescription from "./doctorScreen/Prescription";
 import MedicalHistory from "./doctorScreen/MedicalHistory";
+import DoctorLogin from './doctorScreen/DoctorLogin'
+import RemoveDoctors from './AdminComponents/RemoveDoctors';
+import AddClinic from './AdminComponents/AddClinic'
 function App() {
   return (
     <>
