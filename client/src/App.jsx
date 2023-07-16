@@ -20,6 +20,7 @@ import PatientRecord from "./doctorScreen/PatientRecord";
 import MyAppointment from "./doctorScreen/MyAppointment";
 import Prescription from "./doctorScreen/Prescription";
 import MedicalHistory from "./doctorScreen/MedicalHistory";
+import DoctorLogin from './doctorScreen/DoctorLogin'
 function App() {
   return (
     <>
@@ -41,6 +42,7 @@ function App() {
          </Route>
          <Route path="/doctorHome" element={<DoctorHome/>}>
               <Route path="" element={<PatientRecord/>}></Route>
+              <Route path="doctorLogin" element={<DoctorLogin/>}></Route>
               <Route path="patientRecord" element={<PatientRecord/>}></Route>
               <Route path="myAppointment" element={<MyAppointment/>}></Route>
               <Route path="prescription" element={<Prescription/>}></Route>
