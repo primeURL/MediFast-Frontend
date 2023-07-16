@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import env from '../env.json'
 import '../doctorStyles/myappointment.css'
-import { Appointment } from './../patientScreen/PatientPricingAppointment';
+import Swal from 'sweetalert2'
+
 const MyAppointment = () => {
   const id = localStorage.getItem('id')
   const [data,setData] = useState([])
@@ -22,6 +23,10 @@ const MyAppointment = () => {
     try {
       const {data} = await axios.get(`${env.backend_url_bookedDoctor}/updateStatus/${id}`)
       console.log(data);
+      Swal.fire({
+        icon: 'success',
+        title: 'Appointment Accepted',
+      })
     } catch (error) {
       console.log(error);
     }

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import makeAnimated from 'react-select/animated';
 import Select from 'react-select'
-
+import Swal from 'sweetalert2'
 const PatientDoctorConsultant = () => {
   const [appointment, setAppointment] = useState({
     patientName: '',
@@ -20,6 +20,7 @@ const PatientDoctorConsultant = () => {
     setAppointment({...appointment, [e.target.name]: e.target.value})
   }
   const userId = localStorage.getItem('userId')
+  const token = localStorage.getItem('token')
   const [isOpen, setIsOpen] = useState(false)
   const handleShow = () => setIsOpen(true)
   const handleClose = () => setIsOpen(false)
@@ -45,6 +46,11 @@ const PatientDoctorConsultant = () => {
     try {
       const {data} = await axios.post(env.backend_url_bookedDoctor,appointment)
       console.log(data);
+      Swal.fire({
+        icon: 'success',
+        title: data,
+      })
+      setIsOpen(false)
     } catch (error) {
       console.log(error);
     }
@@ -52,8 +58,20 @@ const PatientDoctorConsultant = () => {
 
   const idFun = (id) => {
     console.log(id)
-    setId(id)
-    setIsOpen(true)
+    if(!token){
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Required',
+        footer: 'You will be Redirecting to Login Page Page.'
+      }).then(()=>{
+        window.location.href = '/patientHome/patientLogin'
+        return
+      })
+    }else{  
+      setId(id)
+      setIsOpen(true)
+    }
+  
   }
   useEffect(()=>{
     console.log('hello')
@@ -130,16 +148,3 @@ const PatientDoctorConsultant = () => {
 
 export default PatientDoctorConsultant;
 
-
-// export function Appointmemt(props){
-//   const [isOpen, setIsOpen] = useState(false)
-//   const handleShow = () => setIsOpen(true)
-//   const handleClose = () => setIsOpen(false)
-//   const id = props.id
-//   console.log(id)
-//   return (
-//     <>
-
-//     </>
-//   )
-// }

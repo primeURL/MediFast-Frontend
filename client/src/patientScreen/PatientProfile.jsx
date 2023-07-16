@@ -36,6 +36,7 @@ const PatientProfile = () => {
           <p>Admin Rights : <b>{userDetails.isAdmin ? 'Yes' : 'No'}</b></p>
       </TabPane>
       <TabPane tab="My Appointments" key="2">
+        <MyAppointments/>
       </TabPane>
     </Tabs>
   </div>
@@ -43,3 +44,39 @@ const PatientProfile = () => {
 }
 
 export default PatientProfile
+
+
+export function MyAppointments(){
+  const [data,setData] = useState([])
+  const id = localStorage.getItem('userId')
+  useEffect(()=>{
+      async function getAppointments(){
+        try {
+          const {data} = await axios.get(`${env.backend_url_bookedDoctor}/getPatientsAppointment/${id}`)
+          console.log(data);
+          setData(data)
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      getAppointments()
+  },[])
+  return (
+    <div>
+    {data.toReversed().map((d)=>{
+      return (
+        <div className='profileAppointmentContainer'>
+          <h3><b>Patient Name :</b> {d.patientName}</h3>
+          <p><b>Patient Issue :</b> {d.patientIssue}</p>
+          <p><b>Appointment Day :</b> {d.appointmentDay[0].value}</p>
+          <p><b>Patient Time : </b>{d.patientTime}</p>
+          <p><b>Patient Phone :</b> {d.patientPhone}</p>
+          <p><b>Appointment Status :</b> {d.appointmentStatus}</p>
+        </div>
+      
+      )
+    })}
+  </div>
+  )
+}
+
