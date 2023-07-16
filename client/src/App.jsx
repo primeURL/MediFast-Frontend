@@ -23,6 +23,7 @@ import MedicalHistory from "./doctorScreen/MedicalHistory";
 import DoctorLogin from './doctorScreen/DoctorLogin'
 import RemoveDoctors from './AdminComponents/RemoveDoctors';
 import AddClinic from './AdminComponents/AddClinic'
+import RemoveClinic from "./AdminComponents/RemoveClinic";
 function App() {
   return (
     <>
@@ -59,6 +60,7 @@ function App() {
             <Route path="add-new-doctor" element={<AddDoctors/>}></Route>
             <Route path="remove-doctors" element={<RemoveDoctors/>}></Route>
             <Route path="add-clinic" element={<AddClinic/>}></Route>
+            <Route path="remove-clinic" element={<RemoveClinic/>}></Route>
         </Route>
         
       </Routes>

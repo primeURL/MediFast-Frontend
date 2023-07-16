@@ -8,21 +8,20 @@ const StyledTable= styled(Table)`
   width:90%;
   margin: 50px auto 0 auto
 `
-
 const TableHeader = styled(TableCell)`
     font-weight:bold;
     font-size:18px;
 `
-const RemoveDoctors = () => {
-    const [doctors, setDoctors] = useState([])
+const RemoveClinic = () => {
+    const [clinic, setClinic] = useState([])
     const handleClick = async(id) => {
-        const response = await axios.delete(`${env.backend_url_admin}/delete/${id}`)
+        const response = await axios.delete(`${env.backend_url_admin}/remove-clinic/${id}`)
         fetchDoctors()
         console.log(response)
     }
     async function fetchDoctors(){
-        const {data} = await axios.get(`${env.backend_url_getPatientInfo}/doctorConsultant`)
-        setDoctors(data)
+        const {data} = await axios.get(`${env.backend_url_getPatientInfo}/allclinic`)
+        setClinic(data)
         console.log('d', doctors)
 
     }
@@ -34,24 +33,20 @@ const RemoveDoctors = () => {
     <StyledTable>
         <TableHead>
             <TableRow>
-                <TableHeader>Doctor's Name</TableHeader>
-                <TableHeader>Qualification</TableHeader>
-                <TableHeader>Speciality</TableHeader>
-                <TableHeader>Experience</TableHeader>
-                <TableHeader>Available Days</TableHeader>
-                <TableHeader>Consultation Fee</TableHeader>
+                <TableHeader>Clinic's Name</TableHeader>
+                <TableHeader>Country</TableHeader>
+                <TableHeader>Clinic's Location</TableHeader>
+                <TableHeader>Clinic's Phone</TableHeader>
             </TableRow>
         </TableHead>
         <TableBody>
             {
-                doctors.map((doc) => (
+                clinic.map((doc) => (
                     <TableRow className='data__row' key={doc._id}>
-                        <TableCell>{doc.doctorName}</TableCell>
-                        <TableCell>{doc.qualification}</TableCell>
-                        <TableCell>{doc.speciality}</TableCell>
-                        <TableCell>{doc.experience}</TableCell>
-                        <TableCell>{doc.avaliableDays.map((aD)=>{return <span>{aD.value} | </span>})}</TableCell>
-                        <TableCell>{doc.consultationFee}</TableCell>
+                        <TableCell>{doc.clinicName}</TableCell>
+                        <TableCell>{doc.country}</TableCell>
+                        <TableCell>{doc.clinicLocation}</TableCell>
+                        <TableCell>{doc.clinicPhone}</TableCell>
                         <TableCell><Button variant="contained">Edit</Button></TableCell>
                         <TableCell><Button variant="contained" onClick={()=>handleClick(doc._id)}>Delete</Button></TableCell>
                         
@@ -63,4 +58,4 @@ const RemoveDoctors = () => {
   )
 }
 
-export default RemoveDoctors
+export default RemoveClinic
