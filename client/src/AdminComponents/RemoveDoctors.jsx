@@ -8,10 +8,13 @@ const StyledTable= styled(Table)`
   width:90%;
   margin: 50px auto 0 auto
 `
-
 const TableHeader = styled(TableCell)`
     font-weight:bold;
     font-size:18px;
+`
+
+const EditButton = styled(TableCell)`
+    color: blue
 `
 const RemoveDoctors = () => {
     const [doctors, setDoctors] = useState([])
@@ -52,7 +55,7 @@ const RemoveDoctors = () => {
                         <TableCell>{doc.experience}</TableCell>
                         <TableCell>{doc.avaliableDays.map((aD)=>{return <span>{aD.value} | </span>})}</TableCell>
                         <TableCell>{doc.consultationFee}</TableCell>
-                        <TableCell><Button variant="contained">Edit</Button></TableCell>
+                        <EditButton><EditButton variant="contained"><Link to={`/adminHome/edit-doctor/${doc._id}`}>Edit</Link></EditButton></EditButton>
                         <TableCell><Button variant="contained" onClick={()=>handleClick(doc._id)}>Delete</Button></TableCell>
                         
                     </TableRow>

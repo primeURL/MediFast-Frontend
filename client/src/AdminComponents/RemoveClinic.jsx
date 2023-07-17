@@ -12,6 +12,10 @@ const TableHeader = styled(TableCell)`
     font-weight:bold;
     font-size:18px;
 `
+
+const EditButton = styled(TableCell)`
+    color: blue
+`
 const RemoveClinic = () => {
     const [clinic, setClinic] = useState([])
     const handleClick = async(id) => {
@@ -22,7 +26,6 @@ const RemoveClinic = () => {
     async function fetchDoctors(){
         const {data} = await axios.get(`${env.backend_url_getPatientInfo}/allclinic`)
         setClinic(data)
-        console.log('d', doctors)
 
     }
  useEffect(() => {
@@ -47,7 +50,7 @@ const RemoveClinic = () => {
                         <TableCell>{doc.country}</TableCell>
                         <TableCell>{doc.clinicLocation}</TableCell>
                         <TableCell>{doc.clinicPhone}</TableCell>
-                        <TableCell><Button variant="contained">Edit</Button></TableCell>
+                        <EditButton><EditButton variant="contained"><Link to={`/adminHome/edit-clinic/${doc._id}`}>Edit</Link></EditButton></EditButton>
                         <TableCell><Button variant="contained" onClick={()=>handleClick(doc._id)}>Delete</Button></TableCell>
                         
                     </TableRow>

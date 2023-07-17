@@ -15,9 +15,9 @@ const AdminNavbar = () => {
       <nav className="navbar">
           <ul className="navbar__menu">
               <li className="navbar__item"><Link to='/adminHome/add-new-doctor'>Add Doctors/Consultant</Link></li>
-              <li className='navbar__item'><Link to='/adminHome/remove-doctors'>Remove Doctors</Link></li>
+              <li className='navbar__item'><Link to='/adminHome/remove-doctors'>Edit Doctors</Link></li>
               <li className="navbar__item"><Link to='/adminHome/add-clinic'>Add Clinic</Link></li>
-              <li className="navbar__item"><Link to='/adminHome/remove-clinic'>Remove Clinic</Link></li>
+              <li className="navbar__item"><Link to='/adminHome/remove-clinic'>Edit Clinic</Link></li>
               <li className="navbar__item">Add FAQ</li>
               <li className="navbar__item">Change pricing</li>
           </ul>
