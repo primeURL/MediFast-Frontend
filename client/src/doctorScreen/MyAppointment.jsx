@@ -45,7 +45,6 @@ const MyAppointment = () => {
             <p><b>Appointment Status :</b> {d.appointmentStatus}</p>
             <button onClick={()=>handleConfirmAppoitment(d._id)}>Confirm Appointment</button>
           </div>
-        
         )
       })}
     </div>
