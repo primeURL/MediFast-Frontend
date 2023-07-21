@@ -40,36 +40,16 @@ const EditDoctors = () => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         formData.avaliableDays = selectedOption
-        try {
-            setLoading(true)
-            const {data} = await axios.post(`${env.backend_url_admin}/addDoctor`,formData)
-            console.log(data);
-            Swal.fire({
-                icon: 'success',
-                title: 'Doctor Added Successfull',
-              })
-            setLoading(false)
-
-        } catch (error) {
-            console.log(error);
-            Swal.fire({
-                icon: 'info',
-                title: 'Login Failed',
-                text: error.response.data.message,
-              })
-            setLoading(false)
-
-        }
-        window.location.reload()
+        console.log(formData);
+        const {data} = await axios.put(`${env.backend_url_admin}/edit-doctor/${id}`,formData)
+        console.log(data);
+           
+        navigate('/adminHome/remove-doctors')
     }
     const getDocById = async() => {
         const doc = await axios.get(`${env.backend_url_admin}/edit-doctor/${id}`)
         setFormData(doc.data)
-        doc.data.avaliableDays.forEach((element) => {
-            setSelectedOption(element.value)
-        })
-        console.log(selectedOption);
-        console.log(doc.data.avaliableDays);
+        
     }
 
     useEffect(() => {
@@ -127,7 +107,7 @@ const EditDoctors = () => {
                 Password
                 <input className='form__input' type='text' onChange={handleChange} name='password' value={formData.password}/>
             </label>
-            <button className="form__submit" type="submit">Submit</button>
+            <button className="form__submit" type="submit">Edit</button>
         </form>
     
     </div>)}
