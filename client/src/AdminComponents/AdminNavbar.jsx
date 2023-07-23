@@ -1,5 +1,5 @@
 import React from 'react'
-import '../AdminComponentsStyles/adminNavbar.css'
+import '../patientStyles/patientNavbar.css'
 import { Link } from 'react-router-dom'
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -12,19 +12,23 @@ const AdminNavbar = () => {
   return (
     <>
     
-      <nav className="navbar">
+      <nav className="nav-all">
+        <div className='nav-right'>
           <ul className="navbar__menu">
               <li className="navbar__item"><Link to='/adminHome/add-new-doctor'>Add Doctors/Consultant</Link></li>
               <li className='navbar__item'><Link to='/adminHome/remove-doctors'>Edit Doctors</Link></li>
               <li className="navbar__item"><Link to='/adminHome/add-clinic'>Add Clinic</Link></li>
               <li className="navbar__item"><Link to='/adminHome/remove-clinic'>Edit Clinic</Link></li>
-              <li className="navbar__item">Add FAQ</li>
-              <li className="navbar__item">Change pricing</li>
+              
           </ul>
-          <p>Welcome {userName}</p>
-          <ul className='logoutBtn'>
-              <li className="navbar__item navbar__logout" onClick={handleLogout}>Logout</li>
-          </ul>
+
+        </div>
+        <div className="nav-left">
+          <p className='admin-para'>Welcome {userName}</p>
+          <button onClick={handleLogout}>Logout</button>
+      
+
+        </div>
       </nav>
       <Outlet/>
     </>

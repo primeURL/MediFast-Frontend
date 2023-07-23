@@ -10,7 +10,7 @@ import Loader from '../commonComponents/Loader';
 const EditDoctors = () => {
     const [loading,setLoading] = useState(false)
     const animatedComponents = makeAnimated();
-    const [selectedOption, setSelectedOption] = useState(null);
+    let [selectedOption, setSelectedOption] = useState([]);
     const options = [
         { value: 'Monday',label: 'Monday'},
         { value: 'Tuesday',label: 'Tuesday'},
@@ -48,6 +48,10 @@ const EditDoctors = () => {
     }
     const getDocById = async() => {
         const doc = await axios.get(`${env.backend_url_admin}/edit-doctor/${id}`)
+        console.log(doc);
+        selectedOption = doc.data.avaliableDays
+        setSelectedOption(selectedOption)
+        console.log('htyg',selectedOption);
         setFormData(doc.data)
         
     }
