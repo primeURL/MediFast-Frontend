@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 const PatientDoctorConsultant = () => {
   const [appointment, setAppointment] = useState({
     patientName: '',
-    patientPhone:'',
+    patientEmail:'',
     patientIssue:'',
     appointmentDay:'',
     patientTime:'',
@@ -109,9 +109,9 @@ const PatientDoctorConsultant = () => {
                 <Modal.Body>
                   <div>
                     <label>Name:</label>
-                    <input className='patient__form__input' type='text' name='patientName' value={appointment.patinetName} onChange={handleChange}/>
-                    <label>Phone:</label>
-                    <input className='patient__form__input' type='number' name='patientPhone' value={appointment.patientPhone} onChange={handleChange}/>
+                    <input className='patient__form__input' type='text' name='patientName' value={appointment.patientName} onChange={handleChange}/>
+                    <label>Email:</label>
+                    <input className='patient__form__input' type='email' name='patientEmail' value={appointment.patientEmail} onChange={handleChange}/>
                     <label>Issue:</label>
                     <input className='patient__form__input' type='text' name='patientIssue' value={appointment.patientIssue} onChange={handleChange}/>
                     <label>Appointment Day:</label>
