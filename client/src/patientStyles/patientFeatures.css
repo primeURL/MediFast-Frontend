@@ -27,14 +27,16 @@
     cursor: pointer;
     transition: 0.2s ease;
 }
-
+.card p{
+    text-align: center;
+    color:blue
+}
 .card img{
-    height: 100%;
+    height: 80%;
 }
 
 .features_cards .all_cards .card:hover{
-    width: 355px;
-    height: 405px;
+   
     box-shadow: 2px 4px 6px rgb(63, 56, 56);
 }
 
@@ -48,8 +50,11 @@
     margin-top: 30px;
     align-items: center;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
 }
 .features_cards .all_cards .card .offer h6{
     font-weight: bold;
     font-size: 18px;
+    color:rgb(7, 72, 237);
 }
