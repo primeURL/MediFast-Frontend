@@ -4,6 +4,7 @@ import TabPane from 'antd/es/tabs/TabPane';
 import env from '../env.json'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import {Tag } from 'antd';
 import '../patientStyles/patientProfile.css'
 const PatientProfile = () => {
   const [userDetails,setUserDetails] = useState({})
@@ -70,11 +71,10 @@ export function MyAppointments(){
           <p><b>Patient Issue :</b> {d.patientIssue}</p>
           <p><b>Appointment Day :</b> {d.appointmentDay[0].value}</p>
           <p><b>Patient Time : </b>{d.patientTime}</p>
-          <p><b>Patient Phone :</b> {d.patientPhone}</p>
-          <p><b>Appointment Status :</b> {d.appointmentStatus}</p>
+          <p><b>Patient Email :</b> {d.patientEmail}</p>
+          <p><b>Appointment Status :</b> {d.appointmentStatus == 'Pending' ? <Tag bordered={false} color="error">PENDING</Tag> : <Tag bordered={false} color="success">CONFIRMED</Tag>}</p>
         </div>
-      
-      )
+        )
     })}
   </div>
   )
