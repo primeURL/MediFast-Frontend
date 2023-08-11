@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { FormControl, TextField, styled, Button } from '@mui/material';
 import env from '../env.json'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import '../AdminComponentsStyles/addClinic.css'
 
 const Form = styled(FormControl)`
@@ -34,9 +35,20 @@ const AddClinic = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        const res = await axios.post(`${env.backend_url_admin}/addClinic`,clinic )
-        console.log(res);
-        window.location.reload()
+        try {
+            const res = await axios.post(`${env.backend_url_admin}/addClinic`,clinic )
+            Swal.fire({
+                icon: 'success',
+                title: 'Clinic Added Successfully',
+            }).then(()=>{
+                window.location.reload()
+            })
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong',
+              })
+        }
     }
   return (
     <div className='clinic-form'>

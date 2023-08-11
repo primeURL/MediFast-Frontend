@@ -4,39 +4,36 @@ import axios from 'axios'
 import env from '../env.json'
 
 const PatientFindClinic = () => {
-  const [location, setLocation] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [clinic, setClinic] = useState([])
+  const [location, setLocation] = useState('');
+  const [locationArray, setLocationArray] = useState([]);
 
+  const [clinic, setClinic] = useState([])
   const handleSearch = (e) => {
     e.preventDefault();
-    // Simulate API call to fetch search results based on location
-
-    const matchedObj = clinic.filter(obj => obj.country === location)
+    const matchedObj = clinic.filter(obj => obj.country.toLowerCase() === location.toLowerCase())
     setSearchResults(matchedObj);
     
   };
+  let locations = [
+  ];
   useEffect(()=>{
     async function getAllClinic(){
       const res = await axios.get(`${env.backend_url_getPatientInfo}/allClinic`)
       setClinic(res.data)
+      res.data.forEach((item)=>{
+        if(!locations.includes(item.country)){
+          locations.push(item.country)
+        }
+      })
+      setLocationArray(locations)
+      console.log('location',locations);
     }
     getAllClinic()
   }, [])
   const handleLocationChange = (e) => {
     setLocation(e.target.value)
-    
   }
-  const locations = [
-    'New York',
-    'Los Angeles',
-    'Chicago',
-    'Houston',
-    'Philadelphia',
-    'India'
-    // Add more locations as needed
-  ];
-
   return (
     <div className="find-clinic-container">
     <h2 className="find-clinic-title">Find Clinic</h2>
@@ -45,7 +42,7 @@ const PatientFindClinic = () => {
         Location:
         <select className="location-select" value={location} onChange={(e) => handleLocationChange(e)}>
           <option value="">Select a location</option>
-          {locations.map((loc, index) => (
+          {locationArray.map((loc, index) => (
             <option key={index} value={loc}>{loc}</option>
           ))}
         </select>

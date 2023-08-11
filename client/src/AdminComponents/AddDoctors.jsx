@@ -45,6 +45,8 @@ const AddDoctors = () => {
             Swal.fire({
                 icon: 'success',
                 title: 'Doctor Added Successfull',
+              }).then(()=>{
+                window.location.reload()
               })
             setLoading(false)
 
@@ -58,7 +60,6 @@ const AddDoctors = () => {
             setLoading(false)
 
         }
-        window.location.reload()
     }
   return (
     <>
