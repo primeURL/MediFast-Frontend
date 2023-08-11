@@ -38,7 +38,12 @@ const defaultTheme = createTheme();
 
 export default function PatientSignUp() {
   const [loading,setLoading] = useState(false)
+  const [error, setError] = useState(null);
+  const [errorPassword, setErrorPassword] = useState(null);
   const navigate = useNavigate()
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -50,33 +55,49 @@ export default function PatientSignUp() {
         password: data.get('password'),
         confirmPassword: data.get('confirmPassword'),
       }
-    try {
-        setLoading(true)
-        const url = env.backend_url_patient + '/signup'
-        const {data:res} = await axios.post(url,body)
-        Swal.fire({
-          icon: 'success',
-          title: 'SignUp Successfull',
-          text: res.message,
-          footer: 'You will be Redirecting to Login Page.'
-        }).then(()=>{
-          // navigate('/login')
-        })
-        setLoading(false)
-     } catch (error) {
-        if (
-            error.response &&
-            error.response.status >= 400 &&
-            error.response.status <= 500
-        ) {
+      console.log('body',body);
+      if (isValidEmail(body.email)) {
+        setError(null)
+        if(!body.password || !body.confirmPassword ){
+          setErrorPassword('Password is Required')
+        }else if (body.password && body.confirmPassword){
+          try {
+            setLoading(true)
+            const url = env.backend_url_patient + '/signup'
+            const {data:res} = await axios.post(url,body)
+            setError(null);
+            setErrorPassword(null)
             Swal.fire({
-              icon: 'warning',
-              title: 'SignUp Failed',
-              text: error.response.data.message,
+              icon: 'success',
+              title: 'SignUp Successfull',
+              text: res.message,
+              footer: 'You will be Redirecting to Login Page.'
+            }).then(()=>{
+              // navigate('/login')
             })
+            setError(null);
+            setErrorPassword(null)
             setLoading(false)
+         } catch (error) {
+            if (
+                error.response &&
+                error.response.status >= 400 &&
+                error.response.status <= 500
+            ) {
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'SignUp Failed',
+                  text: error.response.data.message,
+                })
+                setLoading(false)
+            }
         }
-    }
+        }
+       
+      } else {
+        setError('Invalid Email');
+      }
+   
   };
 
   return (
@@ -136,11 +157,14 @@ export default function PatientSignUp() {
                   required
                   fullWidth
                   id="email"
+                  type='email'
                   label="Email Address"
                   name="email"
                   autoComplete="email"
                 />
+                {error && <h2 style={{color: 'red',fontSize:'15px'}}>{error}</h2>}
               </Grid>
+         
               <Grid item xs={12}>
                 <TextField
                   required
@@ -151,6 +175,8 @@ export default function PatientSignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
+              {errorPassword && <h2 style={{color: 'red',fontSize:'15px'}}>{errorPassword}</h2>}
+
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -162,6 +188,8 @@ export default function PatientSignUp() {
                   id="confirmPassword"
                   autoComplete="confirmPassword"
                 />
+                              {errorPassword && <h2 style={{color: 'red',fontSize:'15px'}}>Confirm {errorPassword}</h2>}
+
               </Grid>
               
             </Grid>

@@ -39,6 +39,11 @@ const defaultTheme = createTheme();
 export default function AdminSignUp() {
   const [loading,setLoading] = useState(false)
   const navigate = useNavigate()
+  const [error, setError] = useState(null);
+  const [errorPassword, setErrorPassword] = useState(null);
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,35 +54,47 @@ export default function AdminSignUp() {
         password: data.get('password'),
         confirmPassword: data.get('confirmPassword'),
       }
-    try {
-        setLoading(true)
-        const url = env.backend_url_admin_auth + '/signup'
-        const {data:res} = await axios.post(url,body)
-        Swal.fire({
-          icon: 'success',
-          title: 'SignUp Successfull',
-          text: res.message,
-          footer: 'You will be Redirecting to Login Page.'
-        }).then(()=>{
-          navigate('/adminLogin')
-        })
-        setLoading(false)
-     } catch (error) {
-        if (
-            error.response &&
-            error.response.status >= 400 &&
-            error.response.status <= 500
-        ) {
+      if (isValidEmail(body.email)) {
+        setError(null)
+        if(!body.password || !body.confirmPassword ){
+          setErrorPassword('Password is Required')
+        }else if (body.password && body.confirmPassword){
+          try {
+            setLoading(true)
+            const url = env.backend_url_admin_auth + '/signup'
+            const {data:res} = await axios.post(url,body)
+            setError(null);
+            setErrorPassword(null)
             Swal.fire({
-              icon: 'warning',
-              title: 'SignUp Failed',
-              text: error.response.data.message,
+              icon: 'success',
+              title: 'SignUp Successfull',
+              text: res.message,
+              footer: 'You will be Redirecting to Login Page.'
+            }).then(()=>{
+              navigate('/adminLogin')
             })
             setLoading(false)
+         } catch (error) {
+            if (
+                error.response &&
+                error.response.status >= 400 &&
+                error.response.status <= 500
+            ) {
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'SignUp Failed',
+                  text: error.response.data.message,
+                })
+                setErrorPassword(null)
+                setLoading(false)
+            }
         }
-    }
-  };
-
+       
+      } 
+      }else {
+        setError('Invalid Email');
+      }
+}
   return (
     <>
     {loading ? <Loader/> : (<ThemeProvider theme={defaultTheme}>
@@ -129,6 +146,8 @@ export default function AdminSignUp() {
                   name="email"
                   autoComplete="email"
                 />
+                                {error && <h2 style={{color: 'red',fontSize:'15px'}}>{error}</h2>}
+
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -140,6 +159,8 @@ export default function AdminSignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
+                              {errorPassword && <h2 style={{color: 'red',fontSize:'15px'}}>{errorPassword}</h2>}
+
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -151,6 +172,8 @@ export default function AdminSignUp() {
                   id="confirmPassword"
                   autoComplete="confirmPassword"
                 />
+                                              {errorPassword && <h2 style={{color: 'red',fontSize:'15px'}}>Confirm {errorPassword}</h2>}
+
               </Grid>
               
             </Grid>
